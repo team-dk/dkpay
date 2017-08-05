@@ -9,10 +9,10 @@
                             <h1>Join {{ group }} now</h1>
                             <form>
                                 <div class="form-group">
-                                    <input type="text" class="transparent form-control" placeholder="enter pass-code">
+                                    <input type="text" class="transparent form-control" id="passcode" placeholder="enter pass-code">
                                 </div>
                                 <br>
-                                <button type="submit" class="transparent btn btn-outline btn-xl page-scroll">enter group</button>
+                                <button type="button" class="transparent btn btn-outline btn-xl page-scroll" id="enter_group">enter group</button>
                             </form>
                         </div>
                     </div>
@@ -37,4 +37,25 @@
             </div>
         </div>
     </header>
+
+    <script>
+
+        $('#enter_group').click(function(){
+            var passcode = $("#passcode").val();
+            $.ajax({
+                url: "{% url 'accept_invite' %}",
+                type: "POST",
+                data: {
+                    'passcode': passcode
+                },
+                success: function(response){
+                    window.href.location =
+                },
+                error: function(request){
+                    alert(request.responseText)
+                }
+            })
+        });
+    </script>
+
 {% endblock %}
