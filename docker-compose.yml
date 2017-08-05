@@ -1,0 +1,10 @@
+team-dk:
+        build: .
+        ports:
+                - "8000:8000"
+                - "80:80"
+        environment:
+                ENV: DEV
+        volumes:
+                - ./project:/project
+        
