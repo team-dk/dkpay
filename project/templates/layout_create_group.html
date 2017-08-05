@@ -46,7 +46,7 @@
                     'default_deposit': deposit
                 },
                 success: function(response){
-                    window.href.location ='{% url 'create_group_result' %}?id='+response
+                    window.location ='{% url 'create_group_result' %}?id='+response
                 },
                 error: function(request){
                     alert(request.responseText)
