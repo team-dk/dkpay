@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -22,3 +23,14 @@ class LoginView(TemplateView):
     template_name = 'login.html'
 
 
+@login_required
+class MainView(TemplateView):
+    template_name = 'mygroups.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainView, self).get_context_data()
+        study_groups = StudyGroup.objects.filter()
+
+
+
+        return context
