@@ -49,7 +49,7 @@
                     'passcode': passcode
                 },
                 success: function(response){
-                    window.href.location ='{% url 'dashboard' %}?id='+response
+                    window.href.location ='{% url 'dashboard' id=response %}'
                 },
                 error: function(request){
                     alert(request.responseText)
