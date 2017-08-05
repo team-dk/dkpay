@@ -5,21 +5,12 @@
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Create new study group
         </a>
-        {#    use for loop here#}
+        {% for group in groups %}
         <div class="panel panel-default">
             <div class="panel-body">
-                Basic panel example
+                {{ group.name }}
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                Basic panel example
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                Basic panel example
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

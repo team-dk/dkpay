@@ -7,6 +7,7 @@ import random
 import string
 # Create your views here.
 from django.template.response import TemplateResponse
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 
@@ -15,40 +16,25 @@ from studygroup.models import StudyGroup, StudyGroupRule, StudyGroupMember,Study
 chars = string.ascii_lowercase + string.digits
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
-def test(request):
-    return HttpResponse(request, "hello world")
-
-
 def login(request):
     return TemplateResponse(request, 'layout_login.html')
-#
-# class LoginView(TemplateView):
-#     model = User
-#     template_name = 'login.html'
-
 
 @login_required
 def accept_invitation(request):
     return TemplateResponse(request, 'layout_accept_invitation.html')
 
 
-class LoginView(TemplateView):
-    model = User
-    template_name = 'layout_login.html'
-
-
-@login_required
 class MainView(TemplateView):
     template_name = 'layout_mygroups.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MainView, self).dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data()
-        study_groups = StudyGroup.objects.filter(user=self.request.user)
-        context['group'] = study_groups
+        study_groups = StudyGroup.objects.filter(studygroupmember__user=self.request.user)
+        context['groups'] = study_groups
         return context
 
 
