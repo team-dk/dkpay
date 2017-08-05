@@ -1,11 +1,17 @@
 {% extends 'template_user.html' %}
 {% block usermain %}
     <div class="container text-center">
-        <form>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Study name">
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Study name">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        </div>
     </div>
 {% endblock %}
