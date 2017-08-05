@@ -7,8 +7,13 @@
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Join {{ group }} now</h1>
-
-                            <button class="transparent btn btn-outline btn-xl page-scroll">enter</button>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="transparent form-control" placeholder="enter pass-code">
+                                </div>
+                                <br>
+                                <button type="submit" class="transparent btn btn-outline btn-xl page-scroll">enter group</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -19,7 +24,8 @@
                                 <div class="screen">
                                     {% load static %}
                                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="{% static "img/money-gold-coins-finance.jpg" %}" class="img-responsive" alt="">
+                                    <img src="{% static "img/money-gold-coins-finance.jpg" %}" class="img-responsive"
+                                         alt="">
                                 </div>
                                 <div class="button">
                                     <!-- You can hook the "home button" to some JavaScript events or just remove it -->
