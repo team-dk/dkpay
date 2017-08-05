@@ -8,7 +8,7 @@
         {% for group in groups %}
         <div class="panel panel-default">
             <div class="panel-body">
-                <a href="#" class="btn btn-default">{{ group.name }}</a>
+                <a href="{% url 'dashboard' group.id %}" class="btn btn-default">{{ group.name }}</a>
             </div>
         </div>
         {% endfor %}
