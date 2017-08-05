@@ -20,12 +20,12 @@ def test(request):
 
 class LoginView(TemplateView):
     model = User
-    template_name = 'login.html'
+    template_name = 'layout_login.html'
 
 
 @login_required
 class MainView(TemplateView):
-    template_name = 'mygroups.html'
+    template_name = 'layout_mygroups.html'
 
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data()
