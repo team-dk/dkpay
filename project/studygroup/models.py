@@ -13,7 +13,7 @@ class StudyGroup(models.Model):
 class StudyGroupRule(models.Model):
     study_group = models.ForeignKey(StudyGroup)
     rule_name = models.CharField(max_length=50, null=False)
-    rule_amount = models.IntegerField()
+    rule_amount = models.IntegerField(null=True)
     is_default = models.BooleanField(default=False)
 
 

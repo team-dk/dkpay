@@ -5,14 +5,14 @@
             <div class="middle">
                 <div class="inner">
                     <h6>PASSCODE</h6>
-                    <h1>4321</h1>
+                    <h1>{{ group.passcode }}</h1>
                     <br>
                     <button class="btn btn-default">
                         COPY LINK
                     </button>
                     <br>
                     <br>
-                    <a href="#" class="btn btn-default">
+                    <a href="{% url 'dashboard' id=group.id %}" class="btn btn-default">
                         GO TO DASHBOARD
                     </a>
                 </div>
