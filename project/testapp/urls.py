@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^edit-group/$', views.edit_group),
     url(r'^edit-session/$', views.edit_session),
     url(r'^withdraw/$', views.withdraw),
+    url(r'^deposit/$', views.deposit),
     url(r'^group-dashboard/$', views.group_dashboard),
 ]
