@@ -86,3 +86,29 @@ def edit_group(request):
         group = StudyGroup.objects.get(id=group_id)
         return render(request, 'layout_edit_group.html', {'group':group})
 
+
+
+@login_required
+def dashboard(self, request):
+    if request.method =="GET":
+        user = self.request.user
+        group = StudyGroup.objects.get(id=request.GET.get('id'))
+
+
+class Dashboard(TemplateView):
+    template_name = 'layout_group_dashboard.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(Dashboard, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, request, **kwargs):
+        context = super(Dashboard, self).get_context_data()
+        study_groups = StudyGroup.objects.filter(studygroupmember__user=self.request.user)
+
+        group_id = request.GET.get('id')
+        group = study_groups.objects.get(id=group_id)
+
+        context['study_group'] = group
+
+        return context

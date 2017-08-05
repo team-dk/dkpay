@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^$', MainView.as_view(), name='home'),
     # url(r'^$', views.login, name='login'),
     url(r'^accept-invitation/$', views.accept_invite, name='accept_invite'),
+    
 ]
