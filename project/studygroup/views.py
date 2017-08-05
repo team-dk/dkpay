@@ -34,6 +34,7 @@ class MainView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data()
         study_groups = StudyGroup.objects.filter(studygroupmember__user=self.request.user)
+        print(study_groups)
         context['groups'] = study_groups
         return context
 
@@ -158,7 +159,6 @@ def create_session(request, _id):
         return render(request, 'layout_edit_session.html', {'session':session,
                                                             'members': members})
 
-
 @login_required
 def edit_session(request, _id):
     if request.method == "GET":
@@ -196,3 +196,8 @@ class Session(ListView):
         return qs_group_member
 
 
+@login_required
+def edit_session(request, id):
+    if request.method == "GET":
+        session = StudyGroupSession.objects.get(id=id)
+        return render(request, 'layout_edit_session.html', {'session':session})
