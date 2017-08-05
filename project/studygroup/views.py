@@ -86,8 +86,6 @@ def edit_group(request):
         group = StudyGroup.objects.get(id=group_id)
         return render(request, 'layout_edit_group.html', {'group':group})
 
-<<<<<<< HEAD
-
 
 @login_required
 def dashboard(self, request):
@@ -103,17 +101,15 @@ class Dashboard(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(Dashboard, self).dispatch(*args, **kwargs)
 
-    def get_context_data(self, request, **kwargs):
-        context = super(Dashboard, self).get_context_data()
-        study_groups = StudyGroup.objects.filter(studygroupmember__user=self.request.user)
+    def get_context_data(self, **kwargs):
+        context = super(Dashboard, self).get_context_data(**kwargs)
+        group_id = self.request.GET.get('id')
+        study_group = StudyGroup.objects.get(id=group_id)
 
-        group_id = request.GET.get('id')
-        group = study_groups.objects.get(id=group_id)
-
-        context['study_group'] = group
+        context['study_group'] = study_group
 
         return context
-=======
+
 @login_required
 def create_session(request):
     if request.method == "GET":
@@ -125,4 +121,3 @@ def edit_session(request, id):
     if request.method == "GET":
         session = StudyGroupSession.objects.get(id=id)
         return render(request, 'layout_edit_session.html', {'session':session})
->>>>>>> a1b11b1e95179bc9374b007bce03265b496e3e4f
