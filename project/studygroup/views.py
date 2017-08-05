@@ -24,7 +24,7 @@ def test(request):
 
 
 def login(request):
-    return TemplateResponse(request, 'login.html')
+    return TemplateResponse(request, 'layout_login.html')
 #
 # class LoginView(TemplateView):
 #     model = User
@@ -33,12 +33,17 @@ def login(request):
 
 @login_required
 def accept_invitation(request):
-    return TemplateResponse(request, 'accept_invitation.html')
+    return TemplateResponse(request, 'layout_accept_invitation.html')
+
+
+class LoginView(TemplateView):
+    model = User
+    template_name = 'layout_login.html'
 
 
 @login_required
 class MainView(TemplateView):
-    template_name = 'mygroups.html'
+    template_name = 'layout_mygroups.html'
 
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data()
@@ -50,7 +55,7 @@ class MainView(TemplateView):
 @login_required
 def group_create(request):
     if request.method == "GET":
-        return render(request, 'create_group.html')
+        return render(request, 'layout_create_group.html')
 
     elif request.method == "POST":
         group_name = request.POST.get('name')
@@ -67,11 +72,11 @@ def group_create(request):
 @login_required
 def accept_invite(request):
     if request.method == "GET":
-        return render(request, 'accept_invitation.html')
+        return render(request, 'layout_accept_invitation.html')
 
-    elif request.method =="POST":
+    elif request.method == "POST":
         passcode = request.POST.get('passcode')
-
+        print(passcode)
         try:
             group = StudyGroup.objects.get(passcode=passcode)
         except:
@@ -93,5 +98,5 @@ def edit_group(request):
     if request.method == "GET":
         group_id = request.GET.get('id')
         group = StudyGroup.objects.get(id=group_id)
-        return render(request, 'edit_group.html', {'group':group})
+        return render(request, 'layout_edit_group.html', {'group':group})
 
