@@ -14,9 +14,9 @@ RUN apt-get update \
 && git config --global user.email = "teamdk@dk.com"
 
 
-COPY hackathon-dk.conf /etc/apache2/sites-available/
+COPY dkpay.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
-RUN a2ensite hackathon-dk.conf
+RUN a2ensite dkpay.conf
 
 COPY project /project
 RUN pip install -r requirements.txt
