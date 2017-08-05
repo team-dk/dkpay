@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import User
 
+
 class StudyGroup(models.Model):
     name = models.CharField(max_length=40, null=False)
     link = models.CharField(max_length=40)
+    passcode = models.CharField(max_length=8)
 
 
 class StudyGroupRule(models.Model):
