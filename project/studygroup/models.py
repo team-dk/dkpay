@@ -1,51 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
-
-class UserManager(BaseUserManager):
-    def create_user(self, email, password, first_name=None, last_name=None, report_email=None):
-        if not email:
-            raise ValueError('Users must have an email address')
-
-        user = self.model(
-            email=self.normalize_email(email),
-            first_name=first_name,
-            last_name=last_name,
-            report_email=report_email,
-        )
-
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-
-class User(AbstractBaseUser):
-
-    email = models.EmailField(
-        verbose_name='email address',
-        max_length=255,
-        unique=True,
-    )
-    first_name = models.CharField(max_length=16, null=False)
-    last_name = models.CharField(max_length=16, null=False)
-    phone_number = models.IntegerField(null=False)
-    balance = models.IntegerField()
-    bank_account = models.CharField(max_length=40)
-
-    objects = UserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
-
-    def __str__(self):
-        return self.email
-
-    def get_short_name(self):
-        return self.first_name
-
-    def get_full_name(self):
-        return self.last_name+' '+self.first_name
-
+from django.contrib.auth.models import User
 
 class StudyGroup(models.Model):
     name = models.CharField(max_length=40, null=False)
