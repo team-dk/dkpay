@@ -105,16 +105,20 @@ def accept_invite(request):
         except:
             return HttpResponseNotFound('error')
         else:
-            member = StudyGroupMember(
-                user=request.user,
-                group=group
-            )
-            member.save()
+            try:
+                member = StudyGroupMember.objects.get(user=request.user)
+            except:
+                member = StudyGroupMember(
+                    user=request.user,
+                    group=group
+                )
+                member.save()
 
-            # group_sessions = StudyGroupSession.objects.filter(study_group=group)
-            g_id = str(group.id)
-            return HttpResponse(g_id)
-
+                # group_sessions = StudyGroupSession.objects.filter(study_group=group)
+                g_id = str(group.id)
+                return HttpResponse(g_id)
+            else:
+                HttpResponseNotFound('student already exists in the group')
 
 @login_required
 def edit_group(request):
