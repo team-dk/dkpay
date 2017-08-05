@@ -1,0 +1,20 @@
+{% extends 'template_study.html' %}
+{% block studymain %}
+    <div class="container">
+        <form class="text-left">
+            {# for loop here #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Member name</h3>
+                </div>
+                <div class="panel-body">
+                    <input type="radio" name="attendance+(member id from for loop)" value="0"> attended
+                    <input type="radio" name="attendance+(member id from for loop)" value="1">late
+                    <input type="radio" name="attendance+(member id from for loop)" value="2">absent
+                    <input type="number" class="form-control" placeholder="etc" id="custum+(member id from for loop)">
+                </div>
+            </div>
+            {# end for loop #}
+        </form>
+    </div>
+{% endblock %}

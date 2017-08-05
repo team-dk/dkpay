@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^create-group/$', views.create_group),
     url(r'^create-group-result/$', views.create_group_result),
     url(r'^edit-group/$', views.edit_group),
+    url(r'^edit-session/$', views.edit_session),
     url(r'^group-dashboard/$', views.group_dashboard),
 ]
