@@ -3,9 +3,10 @@
     <div class="container">
         <form class="text-left">
             {# for loop here #}
+            {% for member in members %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Member name</h3>
+                    <h3 class="panel-title">{{ member.last_name }} {{ member.last_name }}</h3>
                 </div>
                 <div class="panel-body">
                     <input type="radio" name="attendance+(member id from for loop)" value="0"> attended
@@ -14,6 +15,7 @@
                     <input type="number" class="form-control" placeholder="etc" id="custum+(member id from for loop)">
                 </div>
             </div>
+            {% endfor %}
             {# end for loop #}
             <br>
             <div class="text-center">

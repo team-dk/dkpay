@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import User
@@ -12,7 +13,7 @@ class StudyGroup(models.Model):
 class StudyGroupRule(models.Model):
     study_group = models.ForeignKey(StudyGroup)
     rule_name = models.CharField(max_length=50, null=False)
-    rule_amount = models.IntegerField()
+    rule_amount = models.IntegerField(null=True)
     is_default = models.BooleanField(default=False)
 
 
@@ -59,9 +60,9 @@ class MemberDepositTable(models.Model):
 
 class StudyGroupSession(models.Model):
     study_group = models.ForeignKey(StudyGroup)
-    session_name = models.CharField(max_length=40, null=False)
-    session_date = models.DateField()
-    session_time = models.TimeField()
+    session_name = models.CharField(max_length=40, null=True)
+    session_date = models.DateField(auto_now_add=True)
+    session_time = models.TimeField(auto_now_add=True)
 
 
 class SessionChargeTable(models.Model):
