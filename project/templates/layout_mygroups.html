@@ -1,0 +1,16 @@
+{% extends 'template_user.html' %}
+{% block usermain %}
+    <div class="container">
+        <a href="{% url 'create_group' %}" class="panel">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create new study group
+        </a>
+        {% for group in groups %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a href="{% url 'dashboard' %}?id={{ group.id }}" class="btn btn-default">{{ group.name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

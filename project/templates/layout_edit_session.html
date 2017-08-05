@@ -1,0 +1,27 @@
+{% extends 'template_study.html' %}
+{% block studymain %}
+    <div class="container">
+        <form class="text-left">
+            {# for loop here #}
+            {% for member in members %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ member.first_name }} {{ member.last_name }}</h3>
+                </div>
+                <div class="panel-body">
+                    <input type="radio" name="attendance_{{ member.id }}" value="0"> attended
+                    <input type="radio" name="attendance_{{ member.id }}" value="1">late
+                    <input type="radio" name="attendance_{{ member.id }}" value="2">absent
+                    <input type="number" class="form-control" placeholder="etc" id="custum+(member id from for loop)">
+                </div>
+            </div>
+            {% endfor %}
+            {# end for loop #}
+            <br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

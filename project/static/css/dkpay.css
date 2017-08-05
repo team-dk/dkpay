@@ -1,0 +1,59 @@
+.container {
+    min-height: calc(100% - 65px);
+    align-content: center;
+}
+
+.panel {
+    margin: 10px;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 80%;
+    width: 90%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.transparent {
+    background-color: transparent;
+
+}
+
+.transparent::-webkit-input-placeholder { /* Chrome */
+    color: white;
+    opacity: 0.6;
+}
+
+.transparent:-ms-input-placeholder { /* IE 10+ */
+    color: white;
+    opacity: 0.6;
+}
+
+.transparent::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+    opacity: 0.6;
+}
+
+.transparent:-moz-placeholder { /* Firefox 4 - 18 */
+    color: white;
+    opacity: 0.6;
+}
+
+.transparent::-webkit-input-placeholder {
+    text-align: center;
+}
+
+/* mozilla solution */
+.transparent:-moz-placeholder {
+    text-align: center;
+}

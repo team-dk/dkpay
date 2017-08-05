@@ -1,0 +1,14 @@
+{% extends 'template_study.html' %}
+{% block studymain %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ study_group.name }}
+            </div>
+        </div>
+        <a href="{% url 'create_session' id=study_group.id %}" class="panel">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create new study session
+        </a>
+    </div>
+{% endblock %}
