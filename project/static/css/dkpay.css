@@ -6,6 +6,10 @@ body{
   position:relative;
 }
 
+.panel {
+  margin: 10px;
+}
+
 .transparent {
     background-color: transparent;
 
