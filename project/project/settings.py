@@ -143,6 +143,9 @@ STATIC_DIRS = (
     )
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
