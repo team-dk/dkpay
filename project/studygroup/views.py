@@ -1,16 +1,19 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 from django.shortcuts import render
 import random
 import string
 # Create your views here.
+from django.template.response import TemplateResponse
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 
-from studygroup.models import StudyGroup
+from studygroup.models import StudyGroup, StudyGroupRule, StudyGroupMember,StudyGroupSession
 
 chars = string.ascii_lowercase + string.digits
+
 
 def index(request):
     return render(request, 'index.html')
@@ -20,9 +23,17 @@ def test(request):
     return HttpResponse(request, "hello world")
 
 
-class LoginView(TemplateView):
-    model = User
-    template_name = 'login.html'
+def login(request):
+    return TemplateResponse(request, 'login.html')
+#
+# class LoginView(TemplateView):
+#     model = User
+#     template_name = 'login.html'
+
+
+@login_required
+def accept_invitation(request):
+    return TemplateResponse(request, 'accept_invitation.html')
 
 
 @login_required
@@ -39,9 +50,9 @@ class MainView(TemplateView):
 @login_required
 def group_create(request):
     if request.method == "GET":
-        return render(request, 'create-group.html')
+        return render(request, 'create_group.html')
 
-    if request.method == "POST":
+    elif request.method == "POST":
         group_name = request.POST.get('name')
         passcode = ''.join(random.choice(chars) for _ in range(8))
 
@@ -49,3 +60,38 @@ def group_create(request):
                            passcode=passcode)
         group.save()
         group_id = group.id
+
+        return HttpResponse(group.passcode)
+
+
+@login_required
+def accept_invite(request):
+    if request.method == "GET":
+        return render(request, 'accept_invitation.html')
+
+    elif request.method =="POST":
+        passcode = request.POST.get('passcode')
+
+        try:
+            group = StudyGroup.objects.get(passcode=passcode)
+        except:
+            return HttpResponseNotFound('error')
+        else:
+            member = StudyGroupMember(
+                user=request.user,
+                group=group
+            )
+            member.save()
+
+            # group_sessions = StudyGroupSession.objects.filter(study_group=group)
+            g_id = str(group.id)
+            return HttpResponse(g_id)
+
+
+@login_required
+def edit_group(request):
+    if request.method == "GET":
+        group_id = request.GET.get('id')
+        group = StudyGroup.objects.get(id=group_id)
+        return render(request, 'edit_group.html', {'group':group})
+
