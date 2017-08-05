@@ -159,6 +159,7 @@ def create_session(request, _id):
         return render(request, 'layout_edit_session.html', {'session':session,
                                                             'members': members})
 
+
 @login_required
 def edit_session(request, _id):
     if request.method == "GET":
@@ -195,9 +196,3 @@ class Session(ListView):
         qs_group_member = self.model.objects.filter(group_id=group_id)
         return qs_group_member
 
-
-@login_required
-def edit_session(request, id):
-    if request.method == "GET":
-        session = StudyGroupSession.objects.get(id=id)
-        return render(request, 'layout_edit_session.html', {'session':session})
