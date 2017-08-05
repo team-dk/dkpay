@@ -65,7 +65,7 @@ class StudyGroupMember(models.Model):
     is_admin = models.BooleanField(default=False)
 
 
-class MemberBlanace(models.Model):
+class MemberBalance(models.Model):
     member = models.ForeignKey(StudyGroupMember)
     balance = models.IntegerField()
 
