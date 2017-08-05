@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 
-from dkpay.project.studygroup.models import StudyGroup
+from studygroup.models import StudyGroup
 
 
 def index(request):
