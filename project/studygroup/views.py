@@ -152,19 +152,19 @@ def edit_group(request):
 
 
 @login_required
-def create_session(request, _id):
+def create_session(request, id):
     if request.method == "GET":
-        session = StudyGroupSession.objects.create(study_group_id=_id)
-        members = User.objects.filter(studygroupmember__group_id=_id)
+        session = StudyGroupSession.objects.create(study_group_id=id)
+        members = User.objects.filter(studygroupmember__group_id=id)
         return render(request, 'layout_edit_session.html', {'session':session,
                                                             'members': members})
 
 
 @login_required
-def edit_session(request, _id):
+def edit_session(request, id):
     if request.method == "GET":
-        session = StudyGroupSession.objects.get(id=_id)
-        members = User.objects.filter(studygroupmember__group_id=_id)
+        session = StudyGroupSession.objects.get(id=id)
+        members = User.objects.filter(studygroupmember__group_id=id)
         return render(request, 'layout_edit_session.html', {'session':session,
                                                             'members':members})
 
