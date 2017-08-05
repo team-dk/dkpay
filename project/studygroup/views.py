@@ -89,7 +89,8 @@ def edit_group(request):
 @login_required
 def create_session(request):
     if request.method == "GET":
-        session = StudyGroupSession.objects.create()
+        group_id = request.GET.get('id')
+        session = StudyGroupSession.objects.create(study_group_id=group_id)
         return render(request, 'layout_edit_session.html', {'session':session})
 
 @login_required
