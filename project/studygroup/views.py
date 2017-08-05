@@ -178,8 +178,8 @@ class Dashboard(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Dashboard, self).get_context_data(**kwargs)
-        # group_id = self.request.GET.get('id')
-        group_id = kwargs['id']
+        group_id = self.request.GET.get('id')
+        # group_id = kwargs['id']
         study_group = StudyGroup.objects.get(id=group_id)
 
         context['study_group'] = study_group
